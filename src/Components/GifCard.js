@@ -9,8 +9,9 @@ class GifCard extends Component {
       super(props);
         this.state={
           gifData: [],
+          randomData: "",
           searchInput: "",
-          show: true,
+          showRandom: false,
         };
       }
   
@@ -26,7 +27,8 @@ class GifCard extends Component {
     axios
       .get(url, { params: {key: API_KEY}})
       .then((response) =>{
-       this.setState({gifData: response.data});
+       this.setState({gifData: response.data.data});
+       this.setState({showRandom : false});
        console.log(response.data);
       })
       .catch((err) => {
@@ -40,7 +42,8 @@ class GifCard extends Component {
      axios
       .get(url, { params: {key: API_KEY}})
       .then((response) =>{
-       this.setState({gifData: response.data});
+       this.setState({gifData: response.data.data});
+       this.setState({showRandom : false})
        console.log(response.data);
       })
       .catch((err) => {
@@ -54,14 +57,14 @@ class GifCard extends Component {
     axios
       .get(url, { params: {key: API_KEY}})
       .then((response) =>{
-       this.setState({gifData: response.data});
-       console.log(response.data);
+       this.setState({randomData: response.data.data.images.downsized_large.url});
+       this.setState({showRandom : true});
+      console.log(this.state.randomData);
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
   
   render(){
      return(
@@ -73,8 +76,18 @@ class GifCard extends Component {
            onTrend = {this.handleTrend}
            onRandom = {this.handleRandom}
          />
+        <div>
+          {this.state.gifData.map(data => {
+            if(this.state.showRandom!==true){return (
+              <div>
+                <img src={data.images.downsized_large.url} />
+              </div>
+            )}
+            
+          })}
+            <div><img src={this.state.randomData}/></div>
+        </div>
        </div>
-
      );
     }
   }
