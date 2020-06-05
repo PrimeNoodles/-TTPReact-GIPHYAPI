@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './SearchField.js';
-import './GifCard.js';
+import SearchField from "./Components/SearchField.js";
+import GifCard from "./Components/GifCard.js";
 import './App.css';
 
 class App extends Component() {
