@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
 
 const SearchField = ({value, onChange, onSearch, onTrend, onRandom}) => {
   return(
+    <div className = "d-flex mt-4">
     <div>
-    <div>
-      <button onClick={onTrend}>Trending</button>
-      <button onClick={onRandom}>Random</button>
+      <button className = "btn btn-outline-danger" onClick={onTrend}>Trending</button>
+      <button className = "btn btn-outline-danger" onClick={onRandom}>Random</button>
     </div>
-    <div className = "search">
-      <input value={value} onChange={onChange} />
-      <button onClick={onSearch}>Search</button>
+    <div className = "ml-auto">
+      <input className = "mr-2 " value={value} onChange={onChange} />
+      <button className = "btn btn-outline-danger" onClick={onSearch}>Search</button>
     </div>
      </div>
   );
